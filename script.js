@@ -14,6 +14,7 @@ const fetchProducts = async () => {
         localStorage.setItem("products", JSON.stringify(newProducts));
         products = newProducts;
         displayProducts(products);
+        populateCategories(products);
     } catch (error) {
         console.log(error);
     }
@@ -77,5 +78,26 @@ const searchProduct = () => {
     const query = document.getElementById("search").value.toLowerCase();
     const filteredProducts = products.filter(product => product.title.toLowerCase().includes(query));
     displayProducts(filteredProducts);
+};
+const populateCategories = (items) => {
+    const categorySelect = document.getElementById("categoryFilter");
+    categorySelect.innerHTML = `<option value="all">all</option>`; 
+    const categories = [...new Set(items.map(product => product.category))];
+    categories.forEach(category => {
+        const option = document.createElement("option");
+        option.value = category;
+        option.textContent = category;
+        categorySelect.appendChild(option);
+    });
+};
+const filterByCategory = () => {
+    const selectedCategory = document.getElementById("categoryFilter").value;
+
+    if (selectedCategory === "all") {
+        displayProducts(products); 
+    } else {
+        const filteredProducts = products.filter(product => product.category === selectedCategory);
+        displayProducts(filteredProducts);
+    }
 };
 document.addEventListener("DOMContentLoaded", fetchProducts);
