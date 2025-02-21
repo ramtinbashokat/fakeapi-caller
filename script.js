@@ -9,7 +9,7 @@ const fetchProducts = async () => {
         if (cachedData) {
             products = JSON.parse(cachedData); displayProducts(products)
         }
-        const response = await fetch(API_URL);
+        const response = await fetch(apiUrl);
         const newProducts = await response.json();
         localStorage.setItem("products", JSON.stringify(newProducts));
         products = newProducts;
@@ -61,4 +61,11 @@ const displaySimilarProducts = (items) => {
         similarProducts.appendChild(productCard)
     })
 }
+const filterByPrice = () => {
+    const minPrice = parseFloat(document.getElementById("minPrice").value) || 0;
+    const maxPrice = parseFloat(document.getElementById("maxPrice").value) || Infinity;
+    const filteredProducts = products.filter(product => product.price >= minPrice && product.price <= maxPrice);
+    displayProducts(filteredProducts);
+};
+
 document.addEventListener("DOMContentLoaded", fetchProducts);

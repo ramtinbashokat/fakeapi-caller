@@ -10,16 +10,23 @@
 </head>
 
 <body>
+    <div class="priceSearch">
+        <input type="number" placeholder="min price" id="minPrice" />
+        <input type="number" placeholder="max price" id="maxPrice" />
+        <button onclick="filterByPrice()">price filtered</button>
+        <!-- <button type="reset">reset filter</button> -->
+    </div>
     <div class="container">
         <h1>Products</h1>
         <div id="product-list"></div>
     </div>
+
     <h2>Similar Products</h2>
     <div id="similar-products"></div>
-    
-    
-    
-    
+
+    <!-- <input class="search" placeholder="Search..."> -->
+
+
     <script src="./script.js"></script>
 </body>
 
