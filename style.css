@@ -20,6 +20,7 @@ h1{
     border-bottom: 2px solid #ddd;
     width: 800px;
 }
+#similar-products,
 #product-list {
     display: flex;
     flex-wrap: wrap;
