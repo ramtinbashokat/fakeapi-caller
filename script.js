@@ -68,4 +68,14 @@ const filterByPrice = () => {
     displayProducts(filteredProducts);
 };
 
+let debounceTimeout;
+const debounceSearch = () => {
+    if (debounceTimeout) clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(searchProduct, 300);
+}
+const searchProduct = () => {
+    const query = document.getElementById("search").value.toLowerCase();
+    const filteredProducts = products.filter(product => product.title.toLowerCase().includes(query));
+    displayProducts(filteredProducts);
+};
 document.addEventListener("DOMContentLoaded", fetchProducts);
