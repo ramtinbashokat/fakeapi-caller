@@ -35,6 +35,7 @@ select{
 h1 {
     border-bottom: 2px solid #ddd;
     width: 800px;
+    text-align: center;
 }
 
 #similar-products,
